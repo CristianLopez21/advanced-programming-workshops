@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2024-03-30T17:58:52.895Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="7lmYFoCJAW7wEi1_mMDp" version="24.2.1" type="device">
+  <diagram name="Página-1" id="_k9_zh3n2-COt1yfuk4S">
+    <mxGraphModel dx="1120" dy="426" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Computer&lt;/font&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="150" y="40" width="490" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Ram: 8 gb&lt;/font&gt;&lt;div&gt;&lt;font size=&quot;3&quot;&gt;almacenamiento interno: 100 gb&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font size=&quot;3&quot;&gt;Procesador intel coreI5 10th gen 4 nucleos&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="390" y="70" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-5" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Capa: UI&lt;/font&gt;" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="225" y="150" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-6" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Capa: Lógica&lt;/font&gt;" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="225" y="280" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-7" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Capa: DataBase&lt;/font&gt;" style="shape=module;align=left;spacingLeft=20;align=center;verticalAlign=top;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="225" y="420" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-8" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;SQLAlchemy&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="260" y="455" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="csUHgkJwPKJQX_T5DCJg-9" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;DJango&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="270" y="185" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hQa_t-ok4FF2iXbH8VfF-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Python&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="315" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hQa_t-ok4FF2iXbH8VfF-4" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;HTML&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="185" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hQa_t-ok4FF2iXbH8VfF-7" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;CSS&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="185" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hQa_t-ok4FF2iXbH8VfF-8" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;JavaScript&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="365" y="215" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
