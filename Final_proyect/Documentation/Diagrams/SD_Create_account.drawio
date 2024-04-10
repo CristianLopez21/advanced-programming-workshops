@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-04-10T00:23:21.582Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.1.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="cq79OFMCnkuI0YM0G47P" version="24.1.0" type="device">
+<mxfile host="Electron" modified="2024-04-10T01:21:37.040Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.1.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="bqXKpl9C4AwcssJ-0GLR" version="24.1.0" type="device">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="2420" dy="1523" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2564" dy="1608" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,20 +28,20 @@
         <mxCell id="diKH7t9uhdvl2OTYyAan-2" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
           <mxGeometry x="-1460" y="-960" width="100" height="320" as="geometry" />
         </mxCell>
-        <mxCell id="iF50leZwEsXzKOGwHqzd-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="8WOhdFGJpGClGAThh-gr-6" target="iF50leZwEsXzKOGwHqzd-2">
+        <mxCell id="iF50leZwEsXzKOGwHqzd-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="1" source="8WOhdFGJpGClGAThh-gr-6" target="iF50leZwEsXzKOGwHqzd-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8WOhdFGJpGClGAThh-gr-6" value="Login" style="whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
+        <mxCell id="8WOhdFGJpGClGAThh-gr-6" value="check in" style="whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="-1670" y="-887" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8WOhdFGJpGClGAThh-gr-17" value="Mensaje de valido o invalido" style="whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
+        <mxCell id="8WOhdFGJpGClGAThh-gr-17" value="has been successfully registeres" style="whiteSpace=wrap;html=1;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="-1670" y="-810" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="iF50leZwEsXzKOGwHqzd-2" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+        <mxCell id="iF50leZwEsXzKOGwHqzd-2" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
           <mxGeometry x="-1425" y="-902" width="30" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="iF50leZwEsXzKOGwHqzd-1" value="log_in():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-1520" y="-890" width="50" height="26" as="geometry" />
+        <mxCell id="gP98VWQ0jit31ZTIMwH7-1" value="crate_account():&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1540" y="-890" width="100" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
