@@ -1,4 +1,4 @@
-# Object-oriented program repository
+# Advanced programming repository
 
 ## This repository includes the following:
 -A Workshop_1 folder that includes the first workshop of the class Advanzed programming 
