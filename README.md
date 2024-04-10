@@ -19,6 +19,6 @@ Now, among the tools necessary to develop this software, and taking into account
 - As a buyer, I want to be able to purchase more than one unit of a product and be able to see the total that I need to pay.
 - As a manager, I want to provide the platform with a way to search for products by name and display the searched product and similar products that may interest the buyer on the same page. 
 
-## Develoopment process
+## Development process
 To facilitate and organize the development of the platform, we begin by creating the UML diagrams of __Activities__, __Sequence__, __State__, __Classes__ and the corresponding __CRC__ cards of each class. 
 
