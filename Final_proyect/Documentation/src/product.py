@@ -1,7 +1,22 @@
-"""IDK"""
+"""This file has the classes that represents the products of the plattform"""
 class Product:
-    """This class represents """
+    """This class represent a Product """
     def __init__(self, id_:str, name:str, price:float, stock:int, department:str, description:str, color:str, miniature, style:str) -> None:
+        """ 
+        Constructor of the class
+
+        Parameters:
+        - id(str): Id of the product.
+        - name(str): Name of the product.
+        - price(float): Proce of the product.
+        - stock(int): Stock of the product.
+        - departament(str): Department of the product.
+        - description(str): Description of the product.
+        - color(str): Color of the product.
+        - style(str): Style of the product.
+
+        """
+        
         self.id = id_
         self.name = name
         self.price = price
@@ -13,11 +28,11 @@ class Product:
         self.style = style
 
     def show_product(self):
-        """This method """
+        """This method is used to show a product """
 
 #----------------------Fashion Department------------------
 class Fashion(Product):
-    """This class"""
+    """This class represents the fashion category of products"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str,
                   miniature, style: str, fabric_type:str, care_instruction:str, origin_country:str, size:str,
                   closure_type:str, neck_style:str, sole_material:str, outer_material:str) :
@@ -33,7 +48,7 @@ class Fashion(Product):
 
 #----------------------Sports y Fitness Department---------------------------
 class SportsFitness(Product):
-    """This class"""
+    """This class represents the soport-fitness category of products"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str, miniature, style: str, 
                  sp_size:str, weight:str, materials:str, item_dimensions:str, use_for:str, age_range:str):
         super().__init__(id_, name, price, stock, department, description, color, miniature, style)
@@ -46,8 +61,8 @@ class SportsFitness(Product):
 
 
 #------------------------Home & Kitchen Department---------------------------
-class Home_kitchen(Product):
-    """This class"""
+class HomeKitchen(Product):
+    """This class represents the home-kitchen category of products"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str,
                   miniature, style: str, hk_size:str, brand:str, product_dimensions:str, shape:str, units:str,
                     capacity:str, special_feature:str, recommended_uses:str, material:str):
@@ -63,8 +78,8 @@ class Home_kitchen(Product):
         self.material = material
 
 #--------------------------Electronics Department------------
-class Electronics(Product):
-    """This class"""
+class Electronic(Product):
+    """This class represents the electronics category of products"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str,
                   color: str, miniature, style: str, type_:str, brand:str, model_name:str, 
                   operating_system:str, connectivity_technology:str):
@@ -76,8 +91,8 @@ class Electronics(Product):
         self.connectivity_technology = connectivity_technology
 
 #---------------------------Electronics Types----------------------
-class Camera_photo(Electronics):
-    """This class"""
+class CameraPhoto(Electronic):
+    """This class represents the camera photo category of electronicss"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str,
                   color: str, miniature, style: str, type_: str, brand: str, model_name: str,
                     operating_system: str, connectivity_technology: str, image_resolution:str, photo_sensor_size:str,
@@ -88,8 +103,8 @@ class Camera_photo(Electronics):
         self.image_stabilization = image_stabilization
         self.shutter_speed = shutter_speed
 
-class Phone(Electronics):
-    """This class"""
+class Phone(Electronic):
+    """This class represents the phone category of electronics"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str,
                   color: str, miniature, style: str, type_: str, brand: str, model_name: str,
                     operating_system: str, connectivity_technology: str, wireless_carrier:str, memory_storage:str,
@@ -99,9 +114,10 @@ class Phone(Electronics):
         self.memory_storage = memory_storage
         self.screen_size = screen_size
         self.battery_power_rating = battery_power_rating
+        
 
-class Headphones(Electronics):
-    """This class"""
+class Headphone(Electronic):
+    """This class represents the headphone category of electronics"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str, miniature, style: str, type_: str, brand: str,
                   model_name: str, operating_system: str, connectivity_technology: str,
                     form_factor:str, noise_cancellation:str):
@@ -109,8 +125,8 @@ class Headphones(Electronics):
         self.form_factor = form_factor
         self.noise_cancellation = noise_cancellation
 
-class Console_accesories(Electronics):
-    """This class"""
+class ConsoleAccesorie(Electronic):
+    """This class  represents the console accesories category of electronics"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str, miniature, style: str, type_: str, brand: str, model_name: str, operating_system: str, connectivity_technology: str,
                  platform:str, edition:str, include_components:str, compatible_devices:str, memory_storage:str):
         super().__init__(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model_name, operating_system, connectivity_technology)
@@ -120,16 +136,16 @@ class Console_accesories(Electronics):
         self.compatible_devices = compatible_devices
         self.memory_storage = memory_storage
 
-class Videogames(Electronics):
-    """This class"""
+class Videogame(Electronic):
+    """This class represents the videogame category of electronics"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str, miniature, style: str, type_: str, brand: str, model_name: str, operating_system: str, connectivity_technology: str, platform:str, edition:str, clasification:str):
         super().__init__(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model_name, operating_system, connectivity_technology)
         self.platform = platform
         self.edition = edition
         self.clasification = clasification
 
-class Laptops(Electronics):
-    """This class"""
+class Laptop(Electronic):
+    """This class  represents the laptop category of electronics"""
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str, description: str, color: str, miniature, style: str, type_: str, brand: str, model_name: str, operating_system: str, connectivity_technology: str,
                  capacity:str, screen_size:str, hard_disk_size:str, cpu:str, ram_memory:str, graphics_card:str):
         super().__init__(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model_name, operating_system, connectivity_technology)
