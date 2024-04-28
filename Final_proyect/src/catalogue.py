@@ -20,6 +20,7 @@ class Catalogue:
 
         Returns: 
             -A list of products.
+            
         """
         return cls.products
 

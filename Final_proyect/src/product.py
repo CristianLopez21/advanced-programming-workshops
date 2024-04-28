@@ -42,10 +42,11 @@ class Product:
         self.style = style
 
     def show_product(self):
-        """This method is used to show a product
+        """This method is used to show a product.
         
         Returns: 
-            A product
+            -A product.
+        
 
 
         """
