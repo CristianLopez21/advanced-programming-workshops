@@ -20,14 +20,14 @@ class Product:
         Constructor of the class
 
         Parameters:
-        - id(str): Id of the product.
-        - name(str): Name of the product.
-        - price(float): Proce of the product.
-        - stock(int): Stock of the product.
-        - departament(str): Department of the product.
-        - description(str): Description of the product.
-        - color(str): Color of the product.
-        - style(str): Style of the product.
+            - id(str): Id of the product.
+            - name(str): Name of the product.
+            - price(float): Proce of the product.
+            - stock(int): Stock of the product.
+            - departament(str): Department of the product.
+            - description(str): Description of the product.
+            - color(str): Color of the product.
+            - style(str): Style of the product.
 
         """
 
@@ -42,7 +42,13 @@ class Product:
         self.style = style
 
     def show_product(self):
-        """This method is used to show a product"""
+        """This method is used to show a product
+        
+        Returns: 
+            A product
+
+
+        """
         return self
 
 
@@ -70,6 +76,7 @@ class Fashion(Product):
         sole_material: str,
         outer_material: str,
     ):
+        
         super().__init__(
             id_, name, price, stock, department, description, color, miniature, style
         )
