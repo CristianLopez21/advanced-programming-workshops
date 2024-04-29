@@ -10,8 +10,8 @@ class Catalogue:
     products = []
 
     
-    def __init__(self, id_catalogo: str) -> None:
-        self.id_catalogo = id_catalogo
+    def __init__(self, id_catalogue: str) -> None:
+        self.id_catalogue = id_catalogue
 
     @classmethod
     def show_list_products(cls):

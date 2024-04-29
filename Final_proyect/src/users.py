@@ -1,7 +1,8 @@
 """"This file has the classes that represent the users who can use the online sales platform"""
-#from credit_card import CreditCard
+from catalogue import Catalogue
+from product import Product
 #Dictionaries
-costumers = {}
+customers = {}
 admins = {}
 pay_method = {}
 class User:
@@ -43,7 +44,7 @@ class User:
             phone = input("Phone number: ")
             # TODO save on data base meanwhile it will be saved to a dictionary
             new_costumer = Customer(user_name,phone, user_email,password,access)
-            costumers[user_email] = new_costumer
+            customers[user_email] = new_costumer
         elif type_user == 2:
             access = True
             user_email = input("Email: ")
@@ -58,6 +59,7 @@ class User:
             raise ValueError("The option enteerd does not exist, please try again. ")
 
 # -------------------Costumer---------------------------
+   
 class Customer(User):
     """This class represents the external users that buy in the platform"""
 
@@ -89,13 +91,14 @@ class Customer(User):
 
     def add_pay_method(self, user_email: str):
         """This method is used to add a pay method for the user"""
+
         from credit_card import CreditCard
         number = input("Enter the number of the credit card")
         due_date = input("Enter the due date that appear in the credit card")
         cvv = input("Enter the cvv code that appear in the credit card")
         name = input("Enter the name that appear in the credit card")
         new_creditcard = CreditCard(user_email, number, due_date, cvv, name)
-        for user_email in costumers.items():
+        for user_email in customers.items():
             pay_method[user_email] = new_creditcard
             #This prints were used to validate that the data have the correct type
             # and data that was entered
@@ -107,21 +110,29 @@ class Customer(User):
 
     def test_costumers_integrity(self):
         """This function test that the costumer was saved on the dictionary"""
-        for user_email,customer in costumers.items():
+        for user_email,customer in customers.items():
             print(f"Usermail: {user_email}, Password: {customer.password}, username: {customer.user_name}, phone: {customer.phone}, Acces: {customer.access}.")
             return user_email
+        
 
-#----------------------------Administrador_____________
+    def buy_product(self):
+        """This method is used to buy a product"""
+
+#----------------------------Admin_____________
 class Admin(User):
     """This class represents the users that can add new products to the platform"""
+    
     def __init__(self, user_name: str, phone: str, user_email: str, password:
                  str, access: bool):
         super().__init__(user_name, phone, user_email, password, access)
-
-    def add_product(self, user_email, password):
+    
+    
+    def add_product(self, access:bool, product:Product):
         """This method validate that the user have the permission, 
         if they have permission, can add products"""
-
+        if access == self.access:
+            Catalogue.add_product(product)
+            
     def test_admins_integrity(self):
         """This function test that the costumer was saved on the dictionary"""
         for user_email,admin in admins.items():
