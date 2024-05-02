@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from product import Product
+from product_basemodel import Product
 
 class Catalogue(BaseModel):
     """This class represent a base model catalogue of products"""

@@ -1,7 +1,7 @@
 """
 To do: doc string
 """
-from users import Customer
+from users_basemodel import Customer
 class CreditCard:
     """This class represents a credit card"""
 
