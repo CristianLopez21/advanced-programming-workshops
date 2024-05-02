@@ -25,9 +25,7 @@ class Product:
         self.miniature = miniature
         self.style = style
 
-    def show_product(self):
-        """This method is used to show all the info  product """
-        return self
+   
 
 #----------------------Fashion Department------------------
 class Fashion(Product):

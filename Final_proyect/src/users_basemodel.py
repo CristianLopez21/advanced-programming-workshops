@@ -1,7 +1,7 @@
-""""This file has the classes that represent the users who can use the online sales platform"""
+from pydantic import BaseModel
+from catalogue_basemodel import Catalogue
+from product_basemodel import Product
 
-from catalogue import Catalogue
-from product import Product
 #from credit_card import CreditCard
 #Dictionaries
 costumers = {}
@@ -24,25 +24,15 @@ ELECTRONIC_MESSAGE = """
             5. Videogames
             6. Laptops and accessories
         """
-class User:
-    """This class represents the user that can be use the platform"""
 
-    def __init__(self, user_name: str, phone: str, user_email: str, password: str, access: bool):
-        """ 
-        Constructor of the class
 
-        Parameters:
-        - user_name (str): Name of the user.
-        - phone (str): Phone of the user
-        - user_email(str): Email of the user.
-        - password(str): Password of the user.
-        - access(bool): It is the permission that allows access to certain functions
-        """
-        self.user_name = user_name
-        self.phone = phone
-        self.user_email = user_email
-        self.password = password
-        self.access = access
+class User(BaseModel):
+    """This class represents a basemodel of the user that can be use the platform"""
+    user_name: str
+    phone: str
+    user_email: str
+    password: str
+    access: str
 
     def login(self,user_email, password):
         """This methood make all the process for validate the credentials of the users"""
@@ -92,7 +82,7 @@ class Customer(User):
         - shipping_adress(str): Shipping adress of the customer.
         - pay_ method(str): Pay method of the customer.
         """
-        super().__init__(user_name, phone, user_email, password, access)
+        super().__init__(user_name= user_name, phone=phone, user_email= user_email, password=password, access= access)
         self.shipping_address = {}
         self.shoping_history = []
     
@@ -137,7 +127,7 @@ class Admin(User):
     """This class represents the users that can add new products to the platform"""
     def __init__(self, user_name: str, phone: str, user_email: str, password:
                  str, access: bool):
-        super().__init__(user_name, phone, user_email, password, access)
+        super().__init__(user_name=user_name, phone=phone, user_email=user_email, password=password, access=access)
 
     def add_product(self, access):
         """This method validate that the user have the permission, 
