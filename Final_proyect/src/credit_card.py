@@ -13,7 +13,7 @@ class CreditCard:
 
         - number(int): Number of the credit card.
         - due_data(str): Due data of the credit card.
-        - cvv(int): Code cvv of the credit card.
+        - cvv(int): Code cvv of the credit car  d.
         - name (str): Name of the credit card.
         
         """
