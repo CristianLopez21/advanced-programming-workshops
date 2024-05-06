@@ -51,7 +51,7 @@ class Catalogue(BaseModel):
 
     @classmethod
     def add_product(cls, product: Product):
-        """This method is used to add a product to the vidogame list.
+        """This method is used to add a product to the product list.
         Args: 
         
             -product(Product): A product.

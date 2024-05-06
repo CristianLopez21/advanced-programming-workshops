@@ -96,10 +96,7 @@ class Customer(User):
         self.shipping_address = {}
         self.shoping_history = []
     
-    def buy_product(self, code):
-        product = Catalogue.get_product(code)
-        self.shoping_history.append(product)
-
+   
     def add_shipping_address(self, user_email: str):
         """This method is used to add a shipping adress for the user
         Parameters:
