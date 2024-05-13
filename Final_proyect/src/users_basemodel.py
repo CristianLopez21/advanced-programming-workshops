@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from catalogue_basemodel import Catalogue
 from product_basemodel import Product
+from credit_card import CreditCard
 
 #from credit_card import CreditCard
 #Dictionaries
@@ -34,12 +35,10 @@ class User(BaseModel):
     password: str
     access: str
 
-    def login(self,user_email, password):
+    @staticmethod
+    def login(user_email: str, password:str):
         """This methood make all the process for validate the credentials of the users"""
-        if user_email == self.user_email and  password == self.password:
-            return True
-        else:
-            return False
+        return User
 
     @staticmethod
     def create_customer():
@@ -49,8 +48,9 @@ class User(BaseModel):
         password = input("Password: ")
         user_name = input("User name: ")
         phone = input("Phone number: ")
+        shipping_address = input( "Shipping address:")
         # TODO save on data base meanwhile it will be saved to a dictionary
-        new_costumer = Customer(user_name,phone, user_email,password,access)
+        new_costumer = Customer(user_name,phone, user_email,password,access, shipping_address)
         costumers[user_email] = new_costumer
 
     @staticmethod
@@ -69,7 +69,7 @@ class User(BaseModel):
 class Customer(User):
     """This class represents the external users that buy in the platform"""
 
-    def __init__(self, user_name: str, phone: str, user_email: str, password: str, access: bool):
+    def __init__(self, user_name: str, phone: str, user_email: str, password: str, access: bool, shipping_address:str):
         """
         Contructor of the class
 
@@ -83,10 +83,11 @@ class Customer(User):
         - pay_ method(str): Pay method of the customer.
         """
         super().__init__(user_name= user_name, phone=phone, user_email= user_email, password=password, access= access)
-        self.shipping_address = {}
+        self.shipping_address = shipping_address
         self.shoping_history = []
 
-    def add_shipping_address(self, user_email: str):
+    ''' 
+   def add_shipping_address(self, user_email: str):
         """This method is used to add a shipping adress for the user
         Parameters:
 
@@ -94,10 +95,14 @@ class Customer(User):
         """
         self.shipping_address[user_email] = input("Enter your shipping addres")
         #TODO save on a data base
+    '''
+    
+    ## STATIC METHOD?
+
 
     def add_pay_method(self, user_email: str):
         """This method is used to add a pay method for the user"""
-        from credit_card import CreditCard
+        
         number = input("Enter the number of the credit card")
         due_date = input("Enter the due date that appear in the credit card")
         cvv = input("Enter the cvv code that appear in the credit card")
@@ -108,8 +113,10 @@ class Customer(User):
         # and data that was entered
         print(type(new_creditcard))
         print(f"UserMail: {user_email}, NUMBER: {number}, DUE_DATE: {due_date}, CVV: {cvv}, NAME: {name}")
-
-    def show_history(self):
+        return  CreditCard
+    
+    @staticmethod
+    def show_history(user_email):
         """This method is used to show the history of the user in the platfform"""
 
     def test_costumers_integrity(self):
