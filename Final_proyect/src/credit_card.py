@@ -22,3 +22,6 @@ class CreditCard:
         self.due_date = due_date
         self.cvv = cvv
         self.name = name
+    def show_credit_card(self):
+        
+        return self
