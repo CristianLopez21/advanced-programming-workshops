@@ -1,5 +1,5 @@
 """This file has the classes that represents the payment gategay of the plattform"""
-from catalogue_basemodel import Catalogue
+from catalogue import Catalogue
 from users_basemodel import Customer
 class PaymentGateway:
     """This class is a Payment gateway """

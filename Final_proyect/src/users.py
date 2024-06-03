@@ -113,7 +113,7 @@ class Customer(User):
         due_date = input("Enter the due date that appear in the credit card")
         cvv = input("Enter the cvv code that appear in the credit card")
         name = input("Enter the name that appear in the credit card")
-        new_creditcard = CreditCard(user_email, number, due_date, cvv, name)
+        new_creditcard = CreditCard
         paymethods[user_email] = new_creditcard
         #This prints were used to validate that the data have the correct type
         # and data that was entered
