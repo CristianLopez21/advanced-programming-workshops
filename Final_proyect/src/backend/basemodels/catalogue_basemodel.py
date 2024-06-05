@@ -1,10 +1,10 @@
+"""This class represents"""
+from pydantic import BaseModel
+from .product_basemodel import Product
 
-from product_basemodel import Product
-
-class Catalogue:
+class Catalogue(BaseModel):
     """This class represent a base model catalogue of products"""
     id_catalogue: str
-    products = []
 
     @classmethod
     def show_list_products(cls):
@@ -45,7 +45,7 @@ class Catalogue:
         Returns:  
             -A product filtered by department.
         """
-        
+
         return [
             product for product in cls.products if product.department == department
         ]

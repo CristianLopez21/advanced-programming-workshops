@@ -1,31 +1,17 @@
-"""This file has the classes that represents the products of the plattform"""
-class Product:
-    """This class represent a Product """
-    def __init__(self, id_:str, name:str, price:float, stock:int, department:str, description:str, color:str, miniature, style:str) -> None:
-        """ 
-        Constructor of the class
+"""Thsi file contains a class thar represents the behavior """
+from pydantic import BaseModel
 
-        Parameters:
-        - id(str): Id of the product.
-        - name(str): Name of the product.
-        - price(float): Price of the product.
-        - stock(int): Current Stock of the product.
-        - departament(str): Department of the product.
-        - description(str): Description of the product.
-        - color(str): Color of the product.
-        - style(str): Style of the product.
-        """
-        self.id = id_
-        self.name = name
-        self.price = price
-        self.stock = stock
-        self.department = department
-        self.description = description
-        self.color = color
-        self.miniature = miniature
-        self.style = style
+class Product(BaseModel):
+    """This class represent a basemodel of a Product"""
 
-   
+    id_: str
+    name: str
+    price: float
+    stock: int
+    department: str
+    description: str
+    color: str
+    style: str
 
 #----------------------Fashion Department------------------
 class Fashion(Product):
@@ -34,7 +20,7 @@ class Fashion(Product):
                  description: str, color: str, miniature, style: str, fabric_type:str,
                  care_instruction:str, origin_country:str, size:str,
                  neck_style:str, sole_material:str, outer_material:str) :
-        super().__init__(id_, name, price, stock, department, description, color, miniature, style)
+        super().__init__(id_=id_, name=name, price=price, stock=stock, department= department, description=description, color=color, miniature=miniature, style=style)
         self.fabric_type = fabric_type
         self.care = care_instruction
         self.origin_country = origin_country
@@ -49,14 +35,13 @@ class SportsFitness(Product):
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str,
                  description: str, color: str, miniature, style: str, sp_size:str,
                  weight:str, materials:str, item_dimensions:str, use_for:str, age_range:str):
-        super().__init__(id_, name, price, stock, department, description, color, miniature, style)
+        super().__init__(id_=id_, name=name, price=price, stock=stock, department= department, description=description, color=color, miniature=miniature, style=style)
         self.sp_size = sp_size
         self.weight = weight
         self.materials = materials
         self.item_dimensions = item_dimensions
         self.use_for = use_for
         self.age_range = age_range
-
 
 #------------------------Home & Kitchen Department---------------------------
 class HomeKitchen(Product):
@@ -65,7 +50,7 @@ class HomeKitchen(Product):
                  description: str, color: str, miniature, style: str, hk_size:str, brand:str,
                  product_dimensions:str, shape:str, units:str, capacity:str, special_feature:str,
                  recommended_uses:str, material:str):
-        super().__init__(id_, name, price, stock, department, description, color, miniature, style)
+        super().__init__(id_=id_, name=name, price=price, stock=stock, department= department, description=description, color=color, miniature=miniature, style=style)
         self.hk_size = hk_size
         self.brand = brand
         self.product_dimensions = product_dimensions
@@ -82,7 +67,7 @@ class Electronic(Product):
     def __init__(self, id_: str, name: str, price: float, stock: int, department: str,
                  description: str, color: str, miniature, style: str, type_:str, brand:str,
                  model_name:str, operating_system:str, connectivity_technology:str):
-        super().__init__(id_, name, price, stock, department, description, color, miniature, style)
+        super().__init__(id_=id_, name=name, price=price, stock=stock, department= department, description=description, color=color, miniature=miniature, style=style)
         self.type_ = type_
         self.brand = brand
         self.model_name = model_name
@@ -167,4 +152,3 @@ class Laptop(Electronic):
         self.cpu = cpu
         self.ram_memory = ram_memory
         self.graphics_card = graphics_card
-    

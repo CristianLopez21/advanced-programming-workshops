@@ -1,15 +1,13 @@
 """This file has the classes that represents the catalogue of the plattform"""
 
-from product import Product
+from .product import Product
 
 
-class Catalogue:
-    
+class Catalogue: 
     """This class represent a catalogue of products"""
 
     products = []
 
-    
     def __init__(self, id_catalogo: str) -> None:
         self.id_catalogo = id_catalogo
 

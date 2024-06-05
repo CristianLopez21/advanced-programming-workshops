@@ -1,11 +1,11 @@
 """This file has the classes that represents the payment gategay of the plattform"""
-from catalogue import Catalogue
-from users_basemodel import Customer
-class PaymentGateway:
-    """This class is a Payment gateway """
+from .catalogue import Catalogue
+from .users import Customer
+class Shoppingcart:
+    """This class is a Shopping Cart """
     def __init__(self) -> None:
-        self.login_status = None
-
+        pass
+        
     def buy_product(self, code):
         """This method do the process to pay a product"""
         product = Catalogue.get_product(code)

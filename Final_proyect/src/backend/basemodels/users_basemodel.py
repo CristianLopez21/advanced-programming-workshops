@@ -1,13 +1,15 @@
-""""This file has the classes that represent the users who can use the online sales platform"""
+""" To do: docstring"""
+from pydantic import BaseModel
+from .catalogue_basemodel import Catalogue
+from .product_basemodel import Product, Fashion, SportsFitness, HomeKitchen, CameraPhoto, Phone, Headphone, ConsoleAccesorie, Videogame, Laptop
+from .credit_card_bm import CreditCard
 
-from catalogue import Catalogue
-from product import Product
-#from credit_card import CreditCard
 #Dictionaries
 costumers = {}
 admins = {}
 paymethods = {}
 products = {}
+
 MENU_MESSAGE = """
             Select the department to which the product belongs:
             1. Fashion
@@ -24,30 +26,21 @@ ELECTRONIC_MESSAGE = """
             5. Videogames
             6. Laptops and accessories
         """
-class User:
-    """This class represents the user that can be use the platform"""
 
-    def __init__(self, user_name: str, phone: str, user_email: str, password: str, access: bool):
-        """ 
-        Constructor of the class
 
-        Parameters:
-        - user_name (str): Name of the user.
-        - phone (str): Phone of the user
-        - user_email(str): Email of the user.
-        - password(str): Password of the user.
-        - access(bool): It is the permission that allows access to certain functions
-        """
-        self.user_name = user_name
-        self.phone = phone
-        self.user_email = user_email
-        self.password = password
-        self.access = access
+class User(BaseModel):
+    """This class represents a basemodel of the user that can be use the platform"""
+    user_name: str
+    phone: str
+    user_email: str
+    password: str
+    access: str
 
-    def login(self,user_email, password):
+    @staticmethod
+    def login(user_email: str, password: str):
         """This methood make all the process for validate the credentials of the users"""
-        if user_email == self.user_email and  password == self.password:
-            return True
+        if user_email == user_email and  password == password:
+            return User(user_name= "name",phone = "phone", user_email= user_email, password = password, access = "access")
         else:
             return False
 
@@ -92,11 +85,10 @@ class Customer(User):
         - shipping_adress(str): Shipping adress of the customer.
         - pay_ method(str): Pay method of the customer.
         """
-        super().__init__(user_name, phone, user_email, password, access)
+        super().__init__(user_name= user_name, phone=phone, user_email= user_email, password=password, access= access)
         self.shipping_address = {}
         self.shoping_history = []
-    
-   
+
     def add_shipping_address(self, user_email: str):
         """This method is used to add a shipping adress for the user
         Parameters:
@@ -108,12 +100,11 @@ class Customer(User):
 
     def add_pay_method(self, user_email: str):
         """This method is used to add a pay method for the user"""
-        from credit_card import CreditCard
         number = input("Enter the number of the credit card")
         due_date = input("Enter the due date that appear in the credit card")
         cvv = input("Enter the cvv code that appear in the credit card")
         name = input("Enter the name that appear in the credit card")
-        new_creditcard = CreditCard
+        new_creditcard = CreditCard(user_email, number, due_date, cvv, name)
         paymethods[user_email] = new_creditcard
         #This prints were used to validate that the data have the correct type
         # and data that was entered
@@ -134,12 +125,11 @@ class Admin(User):
     """This class represents the users that can add new products to the platform"""
     def __init__(self, user_name: str, phone: str, user_email: str, password:
                  str, access: bool):
-        super().__init__(user_name, phone, user_email, password, access)
+        super().__init__(user_name=user_name, phone=phone, user_email=user_email, password=password, access=access)
 
     def add_product(self, access):
         """This method validate that the user have the permission, 
         if they have permission, can add products"""
-        from product import Fashion, SportsFitness, HomeKitchen, CameraPhoto, Phone, Headphone, ConsoleAccesorie, Videogame, Laptop
         if access == True:
             print(MENU_MESSAGE)
             department = int(input(" "))
@@ -237,3 +227,8 @@ class Admin(User):
         """This function test that the costumer was saved on the dictionary"""
         for user_email,admin in admins.items():
             print(f"Usermail: {user_email}, Password: {admin.password}, username: {admin.user_name}, phone: {admin.phone}, Acces: {admin.access}.")
+
+class UserCredentials(BaseModel):
+    """This class represents idk this was doing by Carlos"""
+    user_email: str
+    password: str
