@@ -1,6 +1,6 @@
 """This class represents"""
 from pydantic import BaseModel
-from .product_basemodel import Product
+from .product_basemodel import Product, products
 
 class Catalogue(BaseModel):
     """This class represent a base model catalogue of products"""
@@ -15,7 +15,7 @@ class Catalogue(BaseModel):
             -A list of products.
             
         """
-        return cls.products
+        return products
 
     @classmethod
     def show_products_by_name(cls, name: str):
@@ -53,15 +53,14 @@ class Catalogue(BaseModel):
     @classmethod
     def add_product(cls, product: Product):
         """This method is used to add a product to the product list.
-        Args: 
-        
-            -product(Product): A product.
+            Args: 
+                product(Product): A product.
         """
-        cls.products.append(product)
+        products[Product.id_] = product
 
     @classmethod
 
-    def get_product(cls, id:str) -> Product:
+    def get_product(cls, id_:str) -> Product:
         """This method is used to get a product
         Args: 
         
@@ -71,7 +70,7 @@ class Catalogue(BaseModel):
             -A product filtered by the id.
         
         """
-        for product in cls.products:
-            if product.id == id:
+        for product in products:
+            if product.id_ == id_:
                 return product
-        return None    
+        return None

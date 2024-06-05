@@ -12,4 +12,3 @@ class CreditCard(BaseModel):
     due_date = str
     cvv = int
     name = str
-    

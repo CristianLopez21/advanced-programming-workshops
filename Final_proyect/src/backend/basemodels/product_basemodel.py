@@ -1,6 +1,7 @@
 """Thsi file contains a class thar represents the behavior """
 from pydantic import BaseModel
 
+products = {}
 class Product(BaseModel):
     """This class represent a basemodel of a Product"""
 
@@ -13,6 +14,59 @@ class Product(BaseModel):
     color: str
     style: str
 
+    @staticmethod
+    def addfashion(id_, name, price, stock, department, description, color, miniature, style, fabric_type, care_instruction, origin_country, size, neck_style, sole_material, outer_material):
+        """This function create a product from the department fashion"""
+        new_garment = Fashion(id_, name, price, stock, department, description, color, miniature, style, fabric_type, care_instruction, origin_country, size, neck_style, sole_material, outer_material)
+        products[department] = new_garment
+   
+    @staticmethod
+    def addsportfitness(id_, name, price, stock, department, description, color, miniature, style, sp_size, weight, materials, dimensions, use, age):
+        """This function create a product from the department Sport and Fitness"""
+        new_sport = SportsFitness(id_, name, price, stock, department, description, color, miniature, style, sp_size, weight, materials, dimensions, use, age)
+        products[department] = new_sport
+
+    @staticmethod
+    def addhomekitchen(id_, name, price, stock, department, description, color, miniature, style, hk_size, brand, p_dimensions, shape, units, capacity, s_feature, uses, material):
+        """This function create a product from the department Home & Kitchen"""
+        new_homek = HomeKitchen(id_, name, price, stock, department, description, color, miniature, style, hk_size, brand, p_dimensions, shape, units, capacity, s_feature, uses, material)
+        products[department] = new_homek
+
+    @staticmethod
+    def addcamera(id_, name, price, stock, department, description, color, miniature, style, type_, e_brand, model, operating_system, connectivity, image, sensor_size, stabilization, shutter_s):
+        """This function create a product from the department Electronics the type cameraPhoto"""
+        new_cam = CameraPhoto(id_, name, price, stock, department, description, color, miniature, style, type_, e_brand, model, operating_system, connectivity, image, sensor_size, stabilization, shutter_s )
+        products[department,type_] = new_cam
+
+    @staticmethod
+    def addphone(id_, name, price, stock, department, description, color, miniature, style, type_, e_brand, model, operating_system, connectivity, wireless_c, memory, screen, battery):
+        """This function create a product from the department Electronics the type phone"""
+        new_pho = Phone(id_, name, price, stock, department, description, color, miniature, style, type_, e_brand, model, operating_system, connectivity, wireless_c, memory, screen, battery)
+        products[department,type_] = new_pho
+
+    @staticmethod
+    def addheadphone(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, form, noise):
+        """This function create a product from the department Electronics the type headphone"""
+        new_head = Headphone(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, form, noise)
+        products[department,type_] = new_head
+
+    @staticmethod
+    def addconsole(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, platform, edition, include, devices, c_memory):
+        """This function create a product from the department Electronics the type Console"""
+        new_cons = ConsoleAccesorie(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, platform, edition, include, devices, c_memory)
+        products[department, type_] = new_cons
+
+    @staticmethod
+    def addvideogame(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, v_platform, v_edition, clasification):
+        """This function create a product from the department Electronics the type Videogame"""
+        new_vid = Videogame(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, v_platform, v_edition, clasification)
+        products[department, type_] = new_vid
+
+    @staticmethod
+    def addlaptop(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, l_capacity, l_screen, hard_disk, cpu, ram, graphics):
+        """This function create a product from the department Electronics the type Laptop"""
+        new_lap = Laptop(id_, name, price, stock, department, description, color, miniature, style, type_, brand, model, operating_system, connectivity, l_capacity, l_screen, hard_disk, cpu, ram, graphics)
+        products[department, type_] = new_lap
 #----------------------Fashion Department------------------
 class Fashion(Product):
     """This class represents the fashion category of products"""
