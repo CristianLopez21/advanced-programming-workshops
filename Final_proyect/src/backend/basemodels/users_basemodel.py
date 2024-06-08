@@ -17,32 +17,17 @@ class User(BaseModel):
     @staticmethod
     def login(user_email: str, password: str):
         """This methood make all the process for validate the credentials of the users"""
-        if user_email == user_email and  password == password:
-            return User(user_name= "name",phone = "phone", user_email= user_email, password = password, access = "access")
-        else:
-            return False
+        return User(user_name= "name",phone = "phone", user_email= user_email, password = password, access = "access")
 
-    @staticmethod
-    def create_customer(user_email, password, user_name, phone, access):
-        """This method create the object Customer and save in the database"""
-        
-        #TODO save on data base meanwhile it will be saved to a dictionary
-        new_costumer = Customer(user_email, password, user_name, phone, access)
-        customers[user_email] = new_costumer
-
-    @staticmethod
-    def create_admin(user_email,password,user_name,phone,access):
-        """This method create the object Admin and save in the database"""
-
-        # TODO save on data base meanwhile it will be saved to a dictionary
-        new_admin = Admin(user_email,password,user_name,phone,access)
-        admins[user_email] = new_admin
+    
 
 # -------------------Custumer---------------------------
 class Customer(User):
     """This class represents the external users that buy in the platform"""
 
-    def __init__(self, user_email: str, password: str, user_name: str, phone: str, access: bool):
+    def __init__(self, user_name: str, phone: str, user_email: str, password: str, access: bool, shipping_address, shopping_history : list, credit_card: CreditCard):
+        
+        
         """
         Contructor of the class
 
@@ -56,8 +41,8 @@ class Customer(User):
         - pay_ method(str): Pay method of the customer.
         """
         super().__init__(user_name= user_name, phone=phone, user_email= user_email, password=password, access= access)
-        self.shipping_address = {}
-        self.shoping_history = []
+        self.shipping_address = shipping_address
+        self.shopping_history = shopping_history
 
     def add_shipping_address(self, user_email: str):
         """This method is used to add a shipping adress for the user
@@ -68,35 +53,25 @@ class Customer(User):
         self.shipping_address[user_email] = input("Enter your shipping addres")
         #TODO save on a data base
 
-    def add_pay_method(self, user_email: str, number, due_date, cvv, name):
-        """This method is used to add a pay method for the user"""
-
-        new_creditcard = CreditCard(user_email, number, due_date, cvv, name)
-        paymethods[user_email] = new_creditcard
-
-    def show_history(self):
+    @classmethod
+    def show_history(cls, user_email):
         """This method is used to show the history of the user in the platfform"""
-
-
+        return cls.shopping_history.get(user_email, [])
 #----------------------------Administrador_____________
 class Admin(User):
     """This class represents the users that can add new products to the platform"""
-    def __init__(self, user_email: str, password: str, user_name: str,
-                  phone: str, access: bool):
+    def __init__(self, user_name: str, phone: str, user_email: str, password:
+                 str, access: bool):
         super().__init__(user_name=user_name, phone=phone, user_email=user_email, password=password, access=access)
-
-    def add_product(self, access):
+    
+    def add_product(self, access, product: Product):
         """This method validate that the user have the permission, 
         if they have permission, can add products"""
 
-        if access == True:
-            pass
-
-    def test_admins_integrity(self):
-        """This function test that the costumer was saved on the dictionary"""
-        for user_email,admin in admins.items():
-            print(f"Usermail: {user_email}, Password: {admin.password}, username: {admin.user_name}, phone: {admin.phone}, Acces: {admin.access}.")
-
+        if self.access == "True":
+            return Catalogue.add_product(product)
+        else:
+            return False
 class UserCredentials(BaseModel):
     """This class represents idk this was doing by Carlos"""
     user_email: str
