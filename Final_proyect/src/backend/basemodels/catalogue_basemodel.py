@@ -1,4 +1,4 @@
-from product_basemodel import Product
+from  ..basemodels   import Product
 
 class Catalogue:
     """This class represent a base model catalogue of products"""
