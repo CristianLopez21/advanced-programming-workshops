@@ -12,13 +12,29 @@
 
     <body>
 
-        <header>
-            <h1 class = "page_name" >Bmazon</h1>
+        <header class = "header_container">
+            <h1 class = "page_name">Bmazon</h1>
+            <div class = "search_bar">
+
+                <input type="text" id="search_input" >
+                <button id="search_button">Search</button>
+            </div> 
+
+            <div class = "shopping_car" >
+                <button id="shoppingcar_button">Shopping car</button>
+            </div>
+            
+            <div class="user_options">
+                <img src="usericon.jpg" alt="User Icon" class="user_icon">
+                <button id="logout_button">Logout</button>
+            </div>
+           
         </header>
+
         <br>
         <h2 class = "ui_name"> Products </h2>
 
-        <script src="script.js"></script>
+        <script src="script_login.js"></script>
 
 
         <footer>
