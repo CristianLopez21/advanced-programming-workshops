@@ -1,7 +1,7 @@
 """Doc string """
 import uvicorn
 from fastapi import FastAPI
-from ..basemodels.catalogue_basemodel import Catalogue
+from ..n_class.catalogue import Catalogue
 from ..basemodels.product_basemodel import Product
 from ..basemodels.users_basemodel import User, Customer, Admin, UserCredentials
 

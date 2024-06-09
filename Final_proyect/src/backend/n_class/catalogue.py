@@ -41,7 +41,6 @@ class Catalogue:
         Returns:  
             -A product filtered by department.
         """
-
         return [
             product for product in cls.products if product.department == department
         ]
