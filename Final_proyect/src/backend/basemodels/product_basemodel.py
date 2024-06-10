@@ -5,7 +5,7 @@ products = {}
 class Product(BaseModel):
     """This class represent a basemodel of a Product"""
 
-    id_: str
+    id_: int = None
     name: str
     price: float
     stock: int
@@ -18,7 +18,7 @@ class Product(BaseModel):
     def addfashion(id_, name, price, stock, department, description, color, miniature, style, fabric_type, care_instruction, origin_country, size, neck_style, sole_material, outer_material):
         """This function create a product from the department fashion"""
         new_garment = Fashion(id_, name, price, stock, department, description, color, miniature, style, fabric_type, care_instruction, origin_country, size, neck_style, sole_material, outer_material)
-        products[department] = new_garment
+        products[id_] = new_garment
    
     @staticmethod
     def addsportfitness(id_, name, price, stock, department, description, color, miniature, style, sp_size, weight, materials, dimensions, use, age):
