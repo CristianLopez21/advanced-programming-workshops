@@ -75,7 +75,7 @@ body {
     background-color: #d32f2f; 
 }
 
-#shoppingcar_button {
+#shoppingcart_button {
     background-color: #ffd518;
     color: black;
     border: none;
@@ -84,7 +84,7 @@ body {
     border-radius: 5px;
 }
 
-#shoppingcar_button:hover {
+#shoppingcart_button:hover {
     background-color: #ffc012d3;
 }
 
