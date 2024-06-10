@@ -51,8 +51,7 @@ if __name__ == "__main__":
 
     custom = Customer(user_name="Customer 1", phone="2296474",user_email="Customer1@gmail.com",password="123456")
     print(f"Create customer: {create_customer(custom)}")
-
-    addrest = "Carrera 35 # 67-25"
+    addrest = "Carrera 36 # 67-25"
     username = custom.user_name
     print(f"Update addres: {add_shipping_addres(addrest, username)}")
 

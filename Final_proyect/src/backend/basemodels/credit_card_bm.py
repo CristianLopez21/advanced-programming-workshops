@@ -2,7 +2,7 @@
 To do: doc string
 """
 from pydantic import BaseModel
-from .users_basemodel import Customer
+from ..users_basemodel import Customer
 
 class CreditCard(BaseModel):
     """This class represents a credit card"""
