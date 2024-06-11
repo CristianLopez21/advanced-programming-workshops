@@ -60,7 +60,7 @@ label {
 }
 
 
-#shoppingcar_button {
+#shoppingcart_button {
     background-color: #ffd518;
     color: black;
     border: none;
@@ -69,7 +69,7 @@ label {
     border-radius: 5px;
 }
 
-#shoppingcar_button:hover {
+#shoppingcart_button:hover {
     background-color: #ffc012d3;
 }
 
