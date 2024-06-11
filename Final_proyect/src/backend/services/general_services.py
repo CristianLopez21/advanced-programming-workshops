@@ -1,9 +1,9 @@
 """Doc string """
 import uvicorn
 from fastapi import FastAPI
-from ..n_class.catalogue import Catalogue
-from ..basemodels.product_basemodel import Product
-from ..basemodels.users_basemodel import User, Customer, Admin, UserCredentials
+from n_class import Catalogue
+from basemodels import Product
+from basemodels import User, Customer, Admin, UserCredentials
 
 app = FastAPI()
 
