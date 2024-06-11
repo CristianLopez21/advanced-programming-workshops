@@ -11,12 +11,14 @@ class Shoppinghistory(BaseModel):
 
 class User(BaseModel):
     """This class represents a basemodel of the user that can be use the platform"""
-    id_: Optional[int]
+    id_: Optional[int] = None
     user_name: str
     password: str
     user_email: str
     phone: str
-    access: Optional[bool]
+    access: Optional[bool] = None
+    class Config:
+        protected_namespaces = ()
 
 # -------------------Custumer---------------------------
 class Customer(User):
@@ -25,10 +27,14 @@ class Customer(User):
     address: Optional[str] = None
     shoppinghistory: Optional[Shoppinghistory] = None
     pay_methods: Optional[CreditCard] = None
+    class Config:
+        protected_namespaces = ()
 
 #----------------------------Administrador_____________
 class Admin(User):
     """This class represents the users that can add new products to the platform"""
+    class Config:
+        protected_namespaces = ()
 
 class UserCredentials(BaseModel):
     """This class represents idk this was doing by Carlos"""

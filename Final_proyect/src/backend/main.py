@@ -1,7 +1,7 @@
 """This file is a module"""
 import uvicorn
-from typing import List
-from fastapi import FastAPI
+from typing import List, Optional
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from users_basemodel import Admin, Customer, UserCredentials
 from db_connection import session, admins, customers, products, fashion, SportFit
@@ -10,7 +10,6 @@ from sqlalchemy.exc import IntegrityError, NoResultFound
 
 app = FastAPI()
 
-origins = ["http://localhost", "http://localhost:8000"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins= ["*"],
@@ -71,6 +70,7 @@ def login(data: UserCredentials):
 
     except NoResultFound:
         return {"message": "Incorrect username or password"}
+    
 
 @app.put("/user/addres")
 def add_shipping_addres(address, user_name):
@@ -86,8 +86,22 @@ def add_shipping_addres(address, user_name):
         print(f"Error inserting data: {e}")
         session.rollback()
 
+@app.post("/add-product")
+async def add_product(department: str, type: Optional[str], prod: Optional[Fashion]=None):
+    if department == "Fashion" and type is None:
+        if prod is None:
+            raise HTTPException(status_code=400, detail="Fashion product data is required")
+        return await add_fashion_product(prod)
+    elif department == "Sport-&-Fitness" and type is None:
+        if not isinstance(prod, SportsFitness):
+            raise HTTPException(status_code=400, detail="SportsFitness product data is required")
+        return await add_sportfit_product(prod)
+    
+    raise HTTPException(status_code=400, detail="Invalid department or type")
+
+
 @app.post("/add-product/Fashion")
-def add_fashion_product(prod: Fashion):
+async def add_fashion_product(prod: Fashion):
     print(f"parameter: {prod} \n")
     try: 
         query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
@@ -96,14 +110,15 @@ def add_fashion_product(prod: Fashion):
         session.commit()
         product_id = result.inserted_primary_key[0]
         query2 = fashion.insert().values(proid= product_id, proname= prod.name, department= prod.department,
-                                         fabricType= prod.fabric_type, care= prod.care, originCountry= prod.origin_country,
-                                         size= prod.size, neckStyle= prod.neck_style, soleMaterial= prod.sole_material, outerMaterial= prod.outer_material)
+                                        fabricType= prod.fabric_type, care= prod.care, originCountry= prod.origin_country,
+                                        size= prod.size, neckStyle= prod.neck_style, soleMaterial= prod.sole_material, outerMaterial= prod.outer_material)
         session.execute(query2)
         session.commit()
         return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
     except IntegrityError as e:
         print(f"Error inserting data: {e}")
         session.rollback()
+        raise HTTPException(status_code=500, detail="Error inserting data")
 
 @app.post("/add-product/Sport-&-Fitness")
 def add_sportfit_product(prod: SportsFitness):
@@ -156,24 +171,3 @@ def show_products() -> List[Product]:
     return products
 
 
-if __name__ == "__main__":
-
-    admin = Admin(user_name="Admin2", phone="3017808273",
-                  user_email="admin2@example.com", password="4321")
-    print(f"Cretae admin: {create_admin(admin)}")
-    custom = Customer(user_name="Customer 1", phone="2296474",user_email="Customer1@gmail.com",password="123456")
-    print(f"Create customer: {create_customer(custom)}")
-    addrest = "Carrera 36 # 67-25"
-    username = custom.user_name
-    print(f"Update addres: {add_shipping_addres(addrest, username)}")
-
-    fashion1 = Fashion(name="Product2", price="1250.09", stock=20, department="fashion",
-                    description="description1", color="blue", style="idk", store="Bmazon",fabric_type="IDK",
-                    care="not wash machine", origin_country="Colombian", size="M", neck_style="Not available",
-                    sole_material="no aplica", outer_material="no aplica")
-    print(f"Add fashion product: {add_fashion_product(fashion1)}")
-
-    sport1 = SportsFitness(name="sport1", price="120.99", stock=10, department="Sport & Fitness", description="Description sport",
-                           color="White", style="IDK", store="Bmazon", sp_size="XL", weight="20 kg", materials="plastic",
-                            item_dimensions= "100 x 200 x 20 LxAxAL", use_for="None", age_range="7+")
-    print(f"Add sport product: {add_sportfit_product(sport1)}")
