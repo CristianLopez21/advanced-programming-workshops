@@ -155,6 +155,7 @@ def show_products() -> List[Product]:
 
     return products
 
+
 if __name__ == "__main__":
 
     admin = Admin(user_name="Admin2", phone="3017808273",
