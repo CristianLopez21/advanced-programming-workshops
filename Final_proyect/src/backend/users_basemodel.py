@@ -27,8 +27,6 @@ class Customer(User):
     address: Optional[str] = None
     shoppinghistory: Optional[Shoppinghistory] = None
     pay_methods: Optional[CreditCard] = None
-    class Config:
-        protected_namespaces = ()
 
 #----------------------------Administrador_____________
 class Admin(User):

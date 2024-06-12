@@ -36,17 +36,12 @@ def create_admin(admin: Admin):
 @app.post("/register/user")
 def create_customer(custom: Customer):
     """This method do some things"""
-    try:
-        print(f"parameetr: {custom} \n")
-        query = customers.insert().values(userName= custom.user_name, phone= custom.phone,
-                                        userEmail = custom.user_email, password = custom.password)
-        session.execute(query)
-        session.commit()
-        return {"message":"User was added to the database \n"}
-    
-    except IntegrityError as e:
-        print(f"Error inserting data: {e}")
-        session.rollback()
+    print(custom)
+    query = customers.insert().values(userName= custom.user_name, phone= custom.phone,
+                                    userEmail = custom.user_email, password = custom.password)
+    session.execute(query)
+    session.commit()
+    return {"message":"User was added to the database"}
 
 @app.post("/Login")
 def login(data: UserCredentials):
@@ -56,14 +51,14 @@ def login(data: UserCredentials):
         result_admins = session.execute(query_admins).fetchone()
 
         if result_admins:
-            return {"message": "Admin login successful", "user": result_admins}
+            return {"message": "Admin login successful"}
 
         # Buscar en la tabla customers
         query_customers = customers.select().where(customers.c.userEmail == data.user_email, customers.c.password == data.password)
         result_customers = session.execute(query_customers).fetchone()
 
         if result_customers:
-            return {"message": "Customer login successful", "user": result_customers}
+            return {"message": "Customer login successful"}
 
         # Si no se encontró en ninguna tabla
         return {"message": "Incorrect username or password"}
@@ -160,14 +155,16 @@ def add_videogame_product(prod: Videogame):
 def add_laptop_product(prod: Laptop):
     pass
 
+@app.get("/catalogue/products")
 def show_products() -> List[Product]:
     """This service returns all the products stored
     in the database"""
 
     query = products.select()
     result = session.execute(query)
-    products = result.fetchall()
+    products1 = result.fetchall()
 
-    return products
+    return products1
+    
 
 
