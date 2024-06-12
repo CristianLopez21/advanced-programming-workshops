@@ -1,8 +1,10 @@
 from users_basemodel import Admin, Customer, UserCredentials
 from product_basemodel import Fashion, SportsFitness
 from main import show_products, create_admin, create_customer, add_shipping_addres, add_fashion_product, add_sportfit_product, login
-from db_connection import session, products
-if __name__ == "__main__":
+from db_connection import session, products, fashion
+from typing import List
+from sqlalchemy import select
+
 
     #admin = Admin(user_name="Admin2", phone="3017808273",
     #              user_email="admin2@example.com", password="4321")
@@ -30,4 +32,22 @@ if __name__ == "__main__":
     #                    item_dimensions= "100 x 200 x 20 LxAxAL", use_for="None", age_range="7+")
     #print(f"Add sport product: {add_sportfit_product(sport1)}")
 
-    show_products()
+    #show_products()
+
+query = select(
+    
+)
+result = session.execute(query)
+products1 = result.fetchall()
+query2 = select(
+        fashion.c.fabricType,
+        fashion.c.care,
+        fashion.c.originCountry,
+        fashion.c.size,
+        fashion.c.neckStyle,
+        fashion.c.soleMaterial,
+        fashion.c.outerMaterial
+        )
+result = session.execute(query2)
+products2 = result.fetchall()
+print(f"prod type: {type(products1)}_ values: {products1}, \n fashion type: {type(products2)}_ values {products2}\n .....end \n")

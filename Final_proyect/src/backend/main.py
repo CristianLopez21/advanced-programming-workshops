@@ -4,9 +4,10 @@ from typing import List, Optional
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from users_basemodel import Admin, Customer, UserCredentials
-from db_connection import session, admins, customers, products, fashion, SportFit
+from db_connection import session, admins, customers, products, fashion, SportFit, homekitchen, Camera, phone, headphone, console, videogame, laptop
 from product_basemodel import Product, Fashion, SportsFitness, HomeKitchen, CameraPhoto, Phone, Headphone, ConsoleAccesorie, Videogame, Laptop
 from sqlalchemy.exc import IntegrityError, NoResultFound
+from sqlalchemy import select
 
 app = FastAPI()
 
@@ -81,22 +82,8 @@ def add_shipping_addres(address, user_name):
         print(f"Error inserting data: {e}")
         session.rollback()
 
-@app.post("/add-product")
-async def add_product(department: str, type: Optional[str], prod: Optional[Fashion]=None):
-    if department == "Fashion" and type is None:
-        if prod is None:
-            raise HTTPException(status_code=400, detail="Fashion product data is required")
-        return await add_fashion_product(prod)
-    elif department == "Sport-&-Fitness" and type is None:
-        if not isinstance(prod, SportsFitness):
-            raise HTTPException(status_code=400, detail="SportsFitness product data is required")
-        return await add_sportfit_product(prod)
-    
-    raise HTTPException(status_code=400, detail="Invalid department or type")
-
-
 @app.post("/add-product/Fashion")
-async def add_fashion_product(prod: Fashion):
+def add_fashion_product(prod: Fashion):
     print(f"parameter: {prod} \n")
     try: 
         query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
@@ -134,26 +121,141 @@ def add_sportfit_product(prod: SportsFitness):
         print(f"Error inserting data: {e}")
         session.rollback()
 
+@app.post("/add-product/Home-&-Kitchen")
 def add_homekitchen_product(prod: HomeKitchen):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = homekitchen.insert().values(proid= product_id, proname= prod.name, department= prod.department, size= prod.hk_size,
+                                           brand= prod.brand, dimensions= prod.product_dimensions, shape= prod.shape, units= prod.units, capacity= prod.capacity,
+                                           specialFeature= prod.special_feature, uses= prod.recommended_uses, material= prod.material)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Camera-Photo")
 def add_cameraphoto_product(prod: CameraPhoto):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = Camera.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                          imageResolution= prod.image_resolution, photoSensor= prod.photo_sensor_size, 
+                                          imagestabilization= prod.image_stabilization, shutterspeed= prod.shutter_speed)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Phone")
 def add_phone_product(prod: Phone):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = phone.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                          wirelesscarrier= prod.wireless_carrier, memorystorage= prod.memory_storage, screensize= prod.screen_size, batteryrating= prod.battery_power_rating)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Headphone")
 def add_headphone_product(prod: Headphone):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = headphone.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                          formfactor= prod.form_factor, noisecancellation= prod.noise_cancellation)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Console-Accesories")
 def add_console_accesori_product(prod: ConsoleAccesorie):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = console.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                          platform= prod.platform, includecomponents= prod.include_components, compatibledevices= prod.compatible_devices,
+                                          memorystorage= prod.memory_storage)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Videogame")
 def add_videogame_product(prod: Videogame):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = videogame.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                          platform= prod.platform, edition= prod.edition, clasification= prod.clasification)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
+@app.post("/add-product/Electronic/Laptop")
 def add_laptop_product(prod: Laptop):
-    pass
+    print(f"parameter: {prod} \n")
+    try: 
+        query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
+                                        description= prod.description, color= prod.color, style= prod.style, store= prod.store)
+        result = session.execute(query)
+        session.commit()
+        product_id = result.inserted_primary_key[0]
+        query2 = laptop.insert().values(proid= product_id, proname= prod.name, department= prod.department, type= prod.type_, brand= prod.brand,
+                                          modelname= prod.model_name, operatinSystem= prod.operating_system, connectivity= prod.connectivity_technology,
+                                         capacity= prod.capacity, screensize= prod.screen_size, harddisksize= prod.hard_disk_size, cpu= prod.cpu,
+                                         ramMemory= prod.ram_memory, graphicCard= prod.graphics_card)
+        session.execute(query2)
+        session.commit()
+        return {"message": f"product {prod.name} del departamento {prod.department} se agrego con exito \n"}
+    except IntegrityError as e:
+        print(f"Error inserting data: {e}")
+        session.rollback()
 
 @app.get("/catalogue/products")
 def show_products() -> List[Product]:
@@ -166,5 +268,23 @@ def show_products() -> List[Product]:
 
     return products1
     
+def show_fashion_products() -> List[Fashion]:
+    """This service returns all the products stored
+    in the database"""
 
+    query = products.select()
+    result = session.execute(query)
+    products1 = result.fetchall()
+    query2 = select(
+        fashion.c.fabricType,
+        fashion.c.care,
+        fashion.c.originCountry,
+        fashion.c.size,
+        fashion.c.neckStyle,
+        fashion.c.soleMaterial,
+        fashion.c.outerMaterial
+    )
+    result = session.execute(query2)
+    products2 = result.fetchall()
+    print(f"prod type: {type(products1)}_ values: {products1}, \n fashion type: {type(products2)}_ values {products2}\n .....end \n")
 
