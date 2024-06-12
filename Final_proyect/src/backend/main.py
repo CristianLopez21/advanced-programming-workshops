@@ -1,13 +1,11 @@
 """This file is a module"""
-import uvicorn
-from typing import List, Optional
-from fastapi import FastAPI, HTTPException, Depends
+from typing import List
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from users_basemodel import Admin, Customer, UserCredentials
 from db_connection import session, admins, customers, products, fashion, SportFit, homekitchen, Camera, phone, headphone, console, videogame, laptop
 from product_basemodel import Product, Fashion, SportsFitness, HomeKitchen, CameraPhoto, Phone, Headphone, ConsoleAccesorie, Videogame, Laptop
 from sqlalchemy.exc import IntegrityError, NoResultFound
-from sqlalchemy import select
 
 app = FastAPI()
 
@@ -18,6 +16,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/hello")
+def hello():
+    """This is a healthcheck service just to validade is backend is up"""
+    return "Welcome to bmazon!"
 
 @app.post("/register/admin")
 def create_admin(admin: Admin):
@@ -28,7 +30,7 @@ def create_admin(admin: Admin):
                 userEmail= admin.user_email, password= admin.password)
         session.execute(query)
         session.commit()
-        return {"message":"Product created succesfully \n"}
+        return {"message":"Admin was added to the database \n"}
     
     except IntegrityError as e:
         print(f"Error inserting data: {e}")
@@ -49,17 +51,19 @@ def login(data: UserCredentials):
     try:
         # Buscar en la tabla admins
         query_admins = admins.select().where(admins.c.userEmail == data.user_email, admins.c.password == data.password)
-        result_admins = session.execute(query_admins).fetchone()
-
+        result_admins = session.execute(query_admins)
+        result_admins1 = result_admins.fetchone()
+        
         if result_admins:
-            return {"message": "Admin login successful"}
+            return result_admins1
 
         # Buscar en la tabla customers
         query_customers = customers.select().where(customers.c.userEmail == data.user_email, customers.c.password == data.password)
-        result_customers = session.execute(query_customers).fetchone()
+        result_customers = session.execute(query_customers)
+        result_customers1 = result_customers.fetchone()
 
         if result_customers:
-            return {"message": "Customer login successful"}
+            return result_customers1
 
         # Si no se encontró en ninguna tabla
         return {"message": "Incorrect username or password"}
@@ -199,7 +203,7 @@ def add_headphone_product(prod: Headphone):
         session.rollback()
 
 @app.post("/add-product/Electronic/Console-Accesories")
-def add_console_accesori_product(prod: ConsoleAccesorie):
+def add_console_accesory_product(prod: ConsoleAccesorie):
     print(f"parameter: {prod} \n")
     try: 
         query = products.insert().values(name= prod.name, price= prod.price, stock= prod.stock, department= prod.department,
@@ -268,6 +272,41 @@ def show_products() -> List[Product]:
 
     return products1
     
-@app.post("/Buy-product")
-def buy_product():
+@app.get("/prductbydepartment/{department}", response_model=List[Product])
+def product_bydepartment(department):
+    query = products.select().where(products.c.department == department)
+    result = session.execute(query)
+    productbydep = result.fetchall()
+
+    return productbydep
+
+@app.get("/product/searchbyname/{name}", response_model=List[Product])
+def productbyname(name):
+    query = products.select().where(products.c.name == name)
+    result = session.execute(query)
+    productbyname = result.fetchall()
+
+    return productbyname
+
+@app.get("/showproductbyid/{id_}", response_model=List[Product])
+def productbyid(id_):
+    query = products.select().where(products.c.id == id_)
+    result = session.execute(query)
+    productbyid = result.fetchall()
+
+    return productbyid
+
+@app.post("/Buy-product/{units}")
+def buy_oneproduct(prod: Product, units: int):
+    totalprice = (prod.price * prod.stock)
+    currentstock = (prod.stock - units)
+
+    query = products.update().where(products.c.id == prod.id_).values(stock = currentstock)
+    session.execute(query)
+    session.commit()
+
+    return {"message: ", f"your purchase worth ${totalprice} was succesfull"}
+
+
+
     
