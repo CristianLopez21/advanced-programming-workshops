@@ -268,23 +268,6 @@ def show_products() -> List[Product]:
 
     return products1
     
-def show_fashion_products() -> List[Fashion]:
-    """This service returns all the products stored
-    in the database"""
-
-    query = products.select()
-    result = session.execute(query)
-    products1 = result.fetchall()
-    query2 = select(
-        fashion.c.fabricType,
-        fashion.c.care,
-        fashion.c.originCountry,
-        fashion.c.size,
-        fashion.c.neckStyle,
-        fashion.c.soleMaterial,
-        fashion.c.outerMaterial
-    )
-    result = session.execute(query2)
-    products2 = result.fetchall()
-    print(f"prod type: {type(products1)}_ values: {products1}, \n fashion type: {type(products2)}_ values {products2}\n .....end \n")
-
+@app.post("/Buy-product")
+def buy_product():
+    

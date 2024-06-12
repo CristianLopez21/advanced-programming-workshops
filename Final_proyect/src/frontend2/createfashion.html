@@ -1,0 +1,100 @@
+<html> 
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a website from a web store">
+    <title>Create fashion</title>
+    <link rel="stylesheet" href="../frontend/Bmazonapp/static/css/styles_home.css">
+</head>
+
+<body>
+
+    <header class="header_container">
+        <h1 class="page_name">Bmazon</h1>
+        <div class="search_bar">
+            <input type="text" id="search_input">
+            <button id="search_button">Search</button>
+        </div>
+
+        <div class="user_options">
+            <img src="../frontend/Bmazonapp/static/images/usericon.jpg" class="user_icon">
+            <button id="logout_button">Logout</button>
+        </div>
+    </header>
+
+    <nav class="menu">
+        <h1 class="section_menu"> Menu </h1>
+        <ul>
+            <li><a href="createelectronic.html">Electronics</a></li>
+            <li><a href="createfashion.html">Fashion</a></li>
+            <li><a href="createsportfitness.html">Sport and fitness</a></li>
+            <li><a href="createhomekitchen.html">Home and kitchen</a></li>
+        </ul>   
+    </nav>
+
+    <div id="products" class="products_container">                                                                                         
+        <h2 class="ui_name">Products</h2>
+        <br>
+        
+        <div class="product">
+            <h3>Add a product</h3>
+            <form>
+                <label for="product_name">Product name:</label>
+                <input type="text" id="product_name" name="product_name" required>
+                <br>
+
+                <label for="product_price">Product price:</label>
+                <input type="text" id="product_price" name="product_price" required>
+
+                <label for="product_stock">Product stock:</label>
+                <input type="text" id="product_stock" name="product_stock" required>
+
+                <label for="product_department">Product department:</label>
+                <input type="text" id="product_department" name="product_department" required>
+
+                <label for="product_color">Product color:</label>
+                <input type="text" id="product_color" name="product_color" required>
+
+                <label for="product_style">Product style:</label>
+                <input type="text" id="product_style" name="product_style" required>
+
+                <label for="product_store">Product store:</label>
+                <input type="text" id="product_store" name="product_store" required>
+
+                <label for="fabric_type">Fabric type:</label>
+                <input type="text" id="fabric_type" name="fabric_type">
+
+                <label for="care">Care:</label>
+                <input type="text" id="care" name="care">
+
+                <label for="origin_country">Origin country:</label>
+                <input type="text" id="origin_country" name="origin_country" required>
+
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" required>
+
+                <label for="neck_style">Neck style:</label>
+                <input type="text" id="neck_style" name="neck_style">
+
+                <label for="sole_material">Sole material:</label>
+                <input type="text" id="sole_material" name="sole_material">
+
+                <label for="outer_material">Outer material:</label>
+                <input type="text" id="outer_material" name="outer_material">
+
+                <br><br>
+                <button type="create_product">Create product</button>
+                <p id="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Bmazon</p>
+    </footer>
+    <script src="script_login.js"></script>
+
+</body>
+
+</html>

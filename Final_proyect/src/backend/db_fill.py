@@ -35,8 +35,16 @@ from sqlalchemy import select
     #show_products()
 
 query = select(
-    
-)
+    products.c.id,
+    products.c.name,
+    products.c.price,
+    products.c.stock,
+    products.c.department,
+    products.c.description,
+    products.c.color,
+    products.c.style,
+    products.c.store
+).where(products.c.department == "Fashion")
 result = session.execute(query)
 products1 = result.fetchall()
 query2 = select(
@@ -50,4 +58,4 @@ query2 = select(
         )
 result = session.execute(query2)
 products2 = result.fetchall()
-print(f"prod type: {type(products1)}_ values: {products1}, \n fashion type: {type(products2)}_ values {products2}\n .....end \n")
+print(f"prod type: {type(products1)}_ values: {(products1)}, \n fashion type: {type(products2)}_ values {(products2)}\n .....end \n")
